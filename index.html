@@ -2785,6 +2785,46 @@
     </div>
   </footer>
 
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+    <div class="modal-box">
+      <div class="modal-head">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div class="modal-title">Do końca specjalnej oferty pozostało</div>
+        <div class="modal-timer">
+          <div class="modal-timer-cell">
+            <div class="modal-timer-n" id="m-hours">00</div>
+            <div class="modal-timer-l">Godzin</div>
+          </div>
+          <div class="modal-timer-cell">
+            <div class="modal-timer-n" id="m-minutes">00</div>
+            <div class="modal-timer-l">Minut</div>
+          </div>
+          <div class="modal-timer-cell">
+            <div class="modal-timer-n" id="m-seconds">00</div>
+            <div class="modal-timer-l">Sekund</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-price-row">
+          <span class="modal-price-new">79 <em>zł</em></span>
+          <span class="modal-price-old">310zł</span>
+        </div>
+        <div class="modal-field">
+          <label>Twój e-mail *</label>
+          <input type="email" placeholder="Twój e-mail" />
+        </div>
+        <div class="modal-field">
+          <label>Twój numer telefonu *</label>
+          <input type="tel" placeholder="Twój numer telefonu" />
+        </div>
+        <button class="modal-submit">UZYSKAJ DOSTĘP</button>
+        <p class="modal-guarantee"><strong>Nie ryzykujesz niczym!</strong> W ciągu 14 dni, bez podania przyczyny, możesz otrzymać zwrot pieniędzy, jeśli kurs nie spełni Twoich oczekiwań</p>
+      </div>
+    </div>
+  </div>
+
   <div class="sticky-cta" id="sticky-cta">
     <a href="#pricing" class="sticky-cta-btn">DOŁĄCZ W SPECJALNEJ CENIE -75%</a>
   </div>

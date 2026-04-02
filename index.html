@@ -1771,6 +1771,176 @@
       .page-wrapper { box-shadow: 0 0 80px rgba(0,0,0,0.22); }
     }
     /* ============================
+       MODAL
+    ============================ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(14,12,10,0.82);
+      z-index: 2000;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-box {
+      width: 100%;
+      max-width: var(--mobile-width);
+      background: var(--cream);
+      max-height: 95vh;
+      overflow-y: auto;
+      transform: translateY(40px);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .modal-overlay.open .modal-box {
+      transform: translateY(0);
+    }
+    .modal-head {
+      background: var(--black);
+      padding: 32px 24px 28px;
+      position: relative;
+      text-align: center;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .modal-timer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 24px;
+    }
+    .modal-timer-cell {
+      padding: 16px 0;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .modal-timer-cell:last-child { border-right: none; }
+    .modal-timer-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+    .modal-timer-l {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .modal-body {
+      padding: 28px 24px 32px;
+    }
+    .modal-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .modal-price-new {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--amber);
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+    .modal-price-new em {
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 700;
+    }
+    .modal-price-old {
+      font-size: 16px;
+      color: var(--gray-light);
+      text-decoration: line-through;
+    }
+    .modal-field { margin-bottom: 16px; }
+    .modal-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+    .modal-field input {
+      width: 100%;
+      padding: 16px 18px;
+      border: 1px solid var(--border-s);
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--black);
+      border-radius: 100px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .modal-field input::placeholder { color: var(--gray-light); }
+    .modal-field input:focus { border-color: var(--amber); }
+    .modal-submit {
+      display: block;
+      width: 100%;
+      background: var(--amber);
+      color: var(--black);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 20px 24px;
+      border: none;
+      cursor: pointer;
+      margin-top: 24px;
+      margin-bottom: 20px;
+      transition: background 0.2s;
+    }
+    .modal-submit:hover { background: var(--amber-light); }
+    .modal-guarantee {
+      font-size: 11px;
+      color: var(--gray);
+      text-align: center;
+      line-height: 1.65;
+    }
+    .modal-guarantee strong { color: var(--black); }
+
+    /* ============================
        STICKY CTA BUTTON
     ============================ */
     .sticky-cta {

@@ -1,0 +1,2706 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>ŚWIATŁO STUDYJNE — Od Początkującego do Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:        #0E0C0A;
+      --dark:         #1A1714;
+      --cream:        #F7F4EF;
+      --cream-dark:   #EDE9E2;
+      --amber:        #C8973B;
+      --amber-light:  #E4B45A;
+      --gray:         #5E5B57;
+      --gray-light:   #9B9791;
+      --border:       rgba(14,12,10,0.12);
+      --border-s:     rgba(14,12,10,0.22);
+      --mobile-width: 430px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .page-wrapper {
+      max-width: var(--mobile-width);
+      margin: 0 auto;
+      background: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* ============================
+       ANNOUNCEMENT BAR
+    ============================ */
+    .announcement-bar {
+      background: var(--black);
+      overflow: hidden;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .announcement-track {
+      display: flex;
+      animation: scroll-left 20s linear infinite;
+      white-space: nowrap;
+      will-change: transform;
+    }
+
+    @keyframes scroll-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .announcement-item {
+      color: var(--cream);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      padding: 0 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .announcement-item::after {
+      content: '—';
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    /* ============================
+       HERO
+    ============================ */
+    .hero {
+      position: relative;
+      min-height: calc(100svh - 36px);
+      max-height: 820px;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+      opacity: 0.4;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,8,5,0.72) 0%,
+        rgba(10,8,5,0.25) 38%,
+        rgba(10,8,5,0.55) 72%,
+        rgba(10,8,5,0.97) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 36px 24px 36px;
+    }
+
+    .hero-top {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(200,151,59,0.45);
+      padding: 5px 14px;
+      width: fit-content;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    .hero-badge-text {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .hero-brand {
+      margin-bottom: 20px;
+      line-height: 0.88;
+    }
+
+    .hero-brand .word-swiatlo {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 76px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -3px;
+    }
+
+    .hero-brand .word-studyjne {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 58px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--amber);
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    .hero-line {
+      width: 36px;
+      height: 2px;
+      background: var(--amber);
+      margin-bottom: 20px;
+    }
+
+    .hero-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .hero-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    .hero-feature::before {
+      content: '→';
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .hero-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      margin-top: 28px;
+    }
+
+    /* ── universal price row (hero + final CTA) ── */
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .price-old {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.28);
+      text-decoration: line-through;
+    }
+
+    .price-new {
+      font-family: 'Inter', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    .price-new .price-unit {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    /* button with inline discount badge */
+    .cta-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--amber);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .cta-button:hover { background: var(--amber-light); }
+
+    .btn-badge {
+      background: var(--black);
+      color: var(--amber);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 4px 9px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .cta-note {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.28);
+      margin-top: 10px;
+    }
+
+    /* ============================
+       TIMER SECTION
+    ============================ */
+    .timer-section {
+      background: var(--black);
+      padding: 32px 24px;
+    }
+
+    .timer-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 20px;
+    }
+
+    .timer-cell {
+      background: var(--black);
+      padding: 18px 8px;
+      text-align: center;
+    }
+
+    .timer-cell .number {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1;
+      display: block;
+    }
+
+    .timer-cell .unit {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-top: 5px;
+      display: block;
+    }
+
+    .timer-bonus {
+      border: 1px solid rgba(200,151,59,0.22);
+      padding: 14px 18px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .timer-bonus strong { color: var(--amber); }
+
+    /* ============================
+       SHARED SECTION
+    ============================ */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-overline {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-overline::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    .section-title em { font-style: italic; }
+    .section-title .accent { color: var(--amber); }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ============================
+       FOR WHOM
+    ============================ */
+    .for-whom-section { padding: 56px 24px; }
+
+    .for-whom-cards {
+      margin-top: 32px;
+      border: 1px solid var(--border);
+    }
+
+    .for-whom-card {
+      padding: 24px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .for-whom-card:last-child { border-bottom: none; }
+
+    .card-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 800;
+      color: rgba(14,12,10,0.05);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 44px;
+      margin-top: -4px;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .card-text {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ============================
+       WHY LIGHT
+    ============================ */
+    .why-section {
+      background: var(--dark);
+      padding: 56px 24px;
+    }
+
+    .why-section .section-title { color: var(--cream); }
+
+    .why-quote {
+      margin-top: 28px;
+      padding: 24px 20px;
+      border: 1px solid rgba(200,151,59,0.2);
+      border-left: 3px solid var(--amber);
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(247,244,239,0.8);
+    }
+
+    .why-quote strong { color: #fff; font-weight: 600; }
+
+    .why-video {
+      margin-top: 24px;
+      width: 100%;
+      aspect-ratio: 9 / 11;
+      overflow: hidden;
+      border: 1px solid rgba(200,151,59,0.2);
+      position: relative;
+    }
+
+    .why-video video {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      display: block;
+    }
+
+    .gif-placeholder .gif-icon { font-size: 30px; opacity: 0.35; }
+
+    .gif-placeholder .gif-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(200,151,59,0.45);
+      line-height: 1.8;
+    }
+
+    .why-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .why-tag {
+      border: 1px solid rgba(200,151,59,0.28);
+      color: rgba(247,244,239,0.65);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 6px 13px;
+    }
+
+    /* ============================
+       AUTHOR
+    ============================ */
+    .author-section { padding: 56px 24px; }
+
+    .author-card {
+      margin-top: 28px;
+      border: 1px solid var(--border);
+    }
+
+    .author-photo-wrap {
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+      background: var(--cream-dark);
+    }
+
+    .author-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .author-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--cream-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 2px dashed rgba(14,12,10,0.12);
+    }
+
+    .avatar-icon { font-size: 44px; opacity: 0.25; }
+
+    .photo-placeholder-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .author-info { padding: 28px 24px; }
+
+    .author-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+
+    .author-role {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 22px;
+    }
+
+    .author-stats-list {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      margin-bottom: 22px;
+    }
+
+    .author-stat-item {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .author-stat-item:last-child { border-bottom: none; }
+
+    .ast-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1;
+      padding: 18px 14px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      letter-spacing: -0.5px;
+    }
+
+    .ast-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray);
+      line-height: 1.55;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--black);
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gray-light);
+      display: block;
+    }
+
+    .author-bio {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .author-bio p + p { margin-top: 12px; }
+
+    /* ============================
+       WHAT YOU GET
+    ============================ */
+    .what-you-get {
+      background: var(--black);
+      padding: 56px 24px;
+    }
+
+    .what-you-get .section-title { color: var(--cream); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      margin-top: 36px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .feature-card {
+      background: var(--black);
+      padding: 28px 18px;
+      text-align: center;
+    }
+
+    .feat-emoji {
+      font-size: 22px;
+      margin-bottom: 12px;
+      display: block;
+      opacity: 0.75;
+    }
+
+    .feat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--amber);
+      display: block;
+      line-height: 1;
+    }
+
+    .feat-label {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(247,244,239,0.4);
+      margin-top: 8px;
+      display: block;
+      line-height: 1.55;
+    }
+
+    /* ============================
+       LESSONS
+    ============================ */
+    .lessons-section { padding: 56px 24px; }
+
+    .lessons-list {
+      margin-top: 36px;
+      border: 1px solid var(--border);
+    }
+
+    .lesson-item {
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .lesson-item:last-child { border-bottom: none; }
+    .lesson-item.open { background: #fff; }
+
+    .lesson-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+    }
+
+    .lesson-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--amber);
+      flex-shrink: 0;
+      width: 26px;
+    }
+
+    .lesson-title-text {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.35;
+    }
+
+    .lesson-toggle {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--border);
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.2s;
+      font-size: 11px;
+      color: var(--gray);
+    }
+
+    .lesson-item.open .lesson-toggle {
+      transform: rotate(180deg);
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .lesson-body { display: none; padding: 0 20px 20px; }
+    .lesson-item.open .lesson-body { display: block; }
+
+    .lesson-content-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lesson-topics {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .lesson-topics li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.55;
+    }
+
+    .lesson-topics li::before {
+      content: '→';
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .lesson-result {
+      border: 1px solid rgba(200,151,59,0.18);
+      border-left: 2px solid var(--amber);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--black);
+      line-height: 1.6;
+      background: rgba(200,151,59,0.04);
+    }
+
+    .lesson-result-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+
+    /* ============================
+       BONUS
+    ============================ */
+    /* ============================
+       SCHEMES PROMO
+    ============================ */
+    .schemes-section {
+      background: var(--cream);
+      padding: 28px 0 0;
+    }
+
+    .schemes-header {
+      padding: 0 24px 32px;
+    }
+
+    .schemes-title {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .schemes-title-light {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-light);
+    }
+
+    .schemes-title-bold {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--black);
+      letter-spacing: -1px;
+    }
+
+    .schemes-title-bold em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .schemes-image {
+      width: 100%;
+      border-top: 1px solid var(--border);
+    }
+
+    .schemes-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .bonus-section {
+      background: var(--dark);
+      padding: 56px 24px;
+    }
+
+    .bonus-section .section-title { color: var(--cream); }
+
+    .bonus-cards {
+      margin-top: 36px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .bonus-card {
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .bonus-card:last-child { border-bottom: none; }
+
+    .bonus-icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(200,151,59,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .bonus-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 2px;
+    }
+
+    .bonus-desc {
+      font-size: 11px;
+      color: rgba(247,244,239,0.38);
+    }
+
+    .bonus-badge {
+      background: var(--amber);
+      color: var(--black);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .bonus-badge-alt {
+      background: rgba(200,151,59,0.15);
+      color: var(--amber);
+      border: 1px solid rgba(200,151,59,0.3);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    /* ============================
+       BENEFITS
+    ============================ */
+    .benefits-section { padding: 56px 24px; }
+
+    .benefits-list {
+      margin-top: 32px;
+      border: 1px solid var(--border);
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .benefit-item:last-child { border-bottom: none; }
+
+    .benefit-check {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber);
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .benefit-text {
+      font-size: 14px;
+      color: var(--black);
+      line-height: 1.55;
+    }
+
+    .photo-gallery-note {
+      margin-top: 28px;
+      border: 1px dashed var(--border-s);
+      padding: 18px 20px;
+      font-size: 13px;
+      color: var(--gray);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ============================
+       GUARANTEE
+    ============================ */
+    /* ============================
+       GALLERY
+    ============================ */
+    .gallery-section {
+      background: var(--black);
+    }
+
+    .gallery-heading {
+      padding: 52px 24px 36px;
+    }
+
+    .gallery-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1.05;
+      color: #fff;
+      letter-spacing: -1px;
+    }
+
+    .gallery-title em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .gallery-grid {
+      columns: 2;
+      column-gap: 2px;
+      line-height: 0;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 2px;
+      break-inside: avoid;
+    }
+
+    /* ============================
+       RESULTS
+    ============================ */
+    .results-section {
+      background: var(--cream);
+      padding: 0;
+    }
+
+    .results-header {
+      padding: 56px 24px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .results-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 0.95;
+      color: var(--black);
+      letter-spacing: -2px;
+      margin-top: 12px;
+    }
+
+    .results-title em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .results-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .result-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .result-item:last-child { border-bottom: none; }
+
+    .result-item--accent {
+      background: var(--black);
+    }
+
+    .result-item--accent .result-num {
+      color: var(--amber);
+      border-right-color: rgba(200,151,59,0.2);
+    }
+
+    .result-item--accent .result-text {
+      color: rgba(247,244,239,0.8);
+    }
+
+    .result-item--accent .result-text strong {
+      color: #fff;
+    }
+
+    .result-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: 1px;
+      padding: 22px 0 22px 24px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      padding-top: 24px;
+    }
+
+    .result-body {
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .result-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--amber);
+      border: 1px solid rgba(200,151,59,0.4);
+      padding: 3px 8px;
+      width: fit-content;
+    }
+
+    .result-text {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    .result-text strong {
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    .guarantee-section {
+      background: var(--black);
+      padding: 56px 24px;
+    }
+
+    .guarantee-overline {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .guarantee-card {
+      margin-top: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 44px 28px;
+      text-align: center;
+    }
+
+    .guarantee-icon {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .guarantee-days {
+      font-family: 'Playfair Display', serif;
+      font-size: 84px;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .guarantee-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(247,244,239,0.6);
+      margin-bottom: 22px;
+    }
+
+    .guarantee-text {
+      font-size: 13px;
+      color: rgba(247,244,239,0.45);
+      line-height: 1.75;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    /* ============================
+       PRICING
+    ============================ */
+    .pricing-section { padding: 56px 0 48px; }
+
+    .pkg-header { padding: 0 24px; }
+    .pkg-header .section-overline { margin-bottom: 10px; }
+    .pkg-header .section-title { margin-bottom: 0; }
+
+    /* editorial grid list */
+    .pkg-grid {
+      margin-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .pkg-row {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pkg-row--full { grid-template-columns: 1fr; }
+
+    .pkg-group-head {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      padding: 10px 24px;
+      background: rgba(200,151,59,0.05);
+    }
+
+    .pkg-row-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .pkg-row-body { padding: 15px 20px; }
+
+    .pkg-row-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+
+    .pkg-row-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.4;
+    }
+
+    .pkg-row-sub {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 3px;
+    }
+
+    /* price block */
+    .pkg-price-block { padding: 36px 24px 0; }
+
+    .pkg-price-area {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      margin-bottom: 8px;
+    }
+
+    .pkg-price-new {
+      font-family: 'Playfair Display', serif;
+      font-size: 68px;
+      font-weight: 900;
+      color: var(--amber);
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .pkg-price-new em {
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .pkg-price-old {
+      font-size: 18px;
+      color: var(--gray-light);
+      text-decoration: line-through;
+    }
+
+    .pkg-discount-line {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+
+    .pkg-discount-line strong { color: var(--amber); font-weight: 700; }
+
+    .pkg-timer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .pkg-timer-cell {
+      padding: 20px 0;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .pkg-timer-cell:last-child { border-right: none; }
+
+    .pkg-timer-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+
+    .pkg-timer-l {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .pkg-cta-btn {
+      display: block;
+      background: var(--amber);
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      padding: 22px 24px;
+      line-height: 1.7;
+    }
+
+    .package-card {
+      margin-top: 32px;
+      border: 1px solid var(--border-s);
+    }
+
+    .package-header {
+      background: var(--black);
+      padding: 26px 24px;
+      text-align: center;
+    }
+
+    .pkg-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 8px;
+    }
+
+    .pkg-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .package-items {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .package-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--black);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .package-item:last-child { border-bottom: none; }
+
+    .package-item .check {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .package-pricing {
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .pkg-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .pkg-price-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 54px;
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .pkg-price-main sub {
+      font-size: 22px;
+      vertical-align: baseline;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .pkg-price-old-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .pkg-price-badge {
+      background: var(--amber);
+      color: var(--black);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 4px 8px;
+    }
+
+    .pkg-price-old {
+      text-decoration: line-through;
+      color: var(--gray-light);
+      font-size: 16px;
+    }
+
+    .cta-button-dark {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background: var(--black);
+      color: var(--cream);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .cta-button-dark:hover { background: var(--dark); }
+
+    .cta-note-dark {
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray-light);
+      margin-top: 10px;
+    }
+
+    /* ============================
+       FAQ
+    ============================ */
+    .faq-section {
+      background: var(--cream-dark);
+      padding: 56px 24px;
+    }
+
+    .faq-list {
+      margin-top: 36px;
+      border: 1px solid var(--border);
+    }
+
+    .faq-item {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item.open { background: #fff; }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 20px;
+    }
+
+    .faq-question-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.4;
+    }
+
+    .faq-icon {
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--amber);
+      flex-shrink: 0;
+      transition: transform 0.3s, border-color 0.2s;
+      line-height: 1;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      border-color: var(--amber);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 18px;
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer { display: block; }
+
+    /* ============================
+       FINAL CTA
+    ============================ */
+    .final-cta {
+      background: var(--dark);
+      padding: 68px 24px;
+      text-align: center;
+    }
+
+    .final-cta .section-overline {
+      justify-content: center;
+    }
+
+    .final-cta .section-overline::before { display: none; }
+    .final-cta .section-title { color: var(--cream); font-size: 38px; }
+    .final-cta .section-desc { color: rgba(247,244,239,0.4); margin-bottom: 32px; }
+
+    .final-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .final-price-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .final-price-main sup {
+      font-size: 26px;
+      vertical-align: super;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .final-price-old {
+      font-size: 20px;
+      color: rgba(255,255,255,0.2);
+      text-decoration: line-through;
+    }
+
+    /* ============================
+       FOOTER
+    ============================ */
+    .footer {
+      padding: 40px 24px;
+      background: var(--black);
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(247,244,239,0.65);
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: 4px;
+    }
+
+    .footer-support {
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(247,244,239,0.28);
+    }
+
+    .footer-support a {
+      color: var(--amber);
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .footer-links a {
+      color: rgba(247,244,239,0.35);
+      font-size: 11px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: rgba(247,244,239,0.65); }
+
+    .footer-legal {
+      font-size: 10px;
+      color: rgba(247,244,239,0.18);
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(247,244,239,0.22);
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .footer-entity {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-entity-name {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(247,244,239,0.55);
+      margin-bottom: 3px;
+    }
+
+    .footer-entity-type {
+      font-size: 11px;
+      color: rgba(247,244,239,0.28);
+    }
+
+    .footer-regs {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(247,244,239,0.28);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .footer-address {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(247,244,239,0.22);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .footer-nav a {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(247,244,239,0.4);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover { color: var(--amber); }
+
+    .footer-payments {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(247,244,239,0.07);
+    }
+
+    /* ============================
+       ANIMATIONS
+    ============================ */
+    .animate-in {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .animate-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 500px) {
+      body { background: #E3DFD8; }
+      .page-wrapper { box-shadow: 0 0 80px rgba(0,0,0,0.22); }
+    }
+    /* ============================
+       STICKY CTA BUTTON
+    ============================ */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      width: 100%;
+      max-width: var(--mobile-width);
+      z-index: 999;
+      padding: 12px 16px 20px;
+      background: linear-gradient(to top, var(--cream) 60%, transparent);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .sticky-cta.visible {
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .sticky-cta-btn {
+      display: block;
+      background: var(--amber);
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      padding: 18px 24px;
+      box-shadow: 0 4px 24px rgba(200,151,59,0.4);
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="hero.jpg" alt="Przykład fotografii studyjnej" />
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-top">
+
+        <div class="hero-badge animate-in">
+          <span class="dot"></span>
+          <span class="hero-badge-text">kurs online · start: <span id="badge-date"></span></span>
+        </div>
+
+        <h1 class="hero-brand animate-in">
+          <span class="word-swiatlo">ŚWIATŁO</span>
+          <span class="word-studyjne">Studyjne</span>
+        </h1>
+
+        <div class="hero-subtitle">Od Początkującego do Pro</div>
+
+        <div class="hero-line"></div>
+
+        <div class="hero-features animate-in">
+          <div class="hero-feature">Bez trudnych terminów — <strong>30 praktycznych schematów oświetlenia</strong></div>
+          <div class="hero-feature">Nawet jeśli jesteś początkujący, <strong>nauczysz się korzystać ze światła studyjnego</strong></div>
+        </div>
+
+      </div>
+
+      <div class="hero-bottom animate-in">
+        <div class="price-row">
+          <span class="price-old">310 zł</span>
+          <span class="price-new">79 <span class="price-unit">zł</span></span>
+        </div>
+        <a href="#pricing" class="cta-button">DOŁĄCZ <span class="btn-badge">-75%</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMER -->
+  <div class="timer-section animate-in">
+    <div class="timer-label">cena obowiązuje jeszcze przez</div>
+    <div class="timer-grid">
+      <div class="timer-cell">
+        <span class="number" id="t-hours">00</span>
+        <span class="unit">Godzin</span>
+      </div>
+      <div class="timer-cell">
+        <span class="number" id="t-minutes">00</span>
+        <span class="unit">Minut</span>
+      </div>
+      <div class="timer-cell">
+        <span class="number" id="t-seconds">00</span>
+        <span class="unit">Sekund</span>
+      </div>
+    </div>
+    <div class="timer-bonus">
+      Ci, którzy zakupią do końca timera — otrzymają <strong>BONUSOWĄ lekcję techniczną:</strong> "Jak podłączać sprzęt oświetleniowy w studiu"
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- FOR WHOM -->
+  <section class="for-whom-section animate-in">
+    <div class="section-overline">dla kogo jest kurs?</div>
+    <h2 class="section-title">STWORZYŁEM<br>TEN KURS DLA</h2>
+
+    <div class="for-whom-cards">
+      <div class="for-whom-card">
+        <div class="card-number">01</div>
+        <div>
+          <div class="card-title">Początkujących fotografów</div>
+          <div class="card-text">jeśli dopiero zaczynasz pracować w studiu, tracisz dużo czasu na ustawianie i konfigurowanie światła oraz gubisz się w tym, co i jak z nim robić.</div>
+        </div>
+      </div>
+      <div class="for-whom-card">
+        <div class="card-number">02</div>
+        <div>
+          <div class="card-title">Doświadczonych fotografów</div>
+          <div class="card-text">jeśli nie udaje Ci się odtworzyć światła z referencji, chcesz głębiej zrozumieć zasady oświetlenia i tworzyć unikalne kadry.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- WHY LIGHT -->
+  <section class="why-section">
+    <div class="animate-in">
+      <div class="section-overline">dlaczego warto?</div>
+      <h2 class="section-title">DLACZEGO WŁAŚNIE<br><em>ŚWIATŁO?</em></h2>
+
+      <div class="why-quote">
+        <strong>Światło – to podstawa fotografii.</strong><br><br>
+        To ono określa atmosferę, emocję i styl kadru. Bez odpowiedniego oświetlenia nawet najdroższa kamera i świetna modelka nie dadzą oczekiwanego rezultatu.
+        <br><br>
+        Jeśli nauczysz się prawidłowo pracować ze światłem, będziesz mógł kontrolować każdy aspekt obrazu i tworzyć jakościowe, profesjonalne kadry.
+      </div>
+
+      <div class="why-video">
+        <video src="video.mp4" autoplay muted loop playsinline></video>
+      </div>
+
+      <div class="why-tags">
+        <span class="why-tag">🎨 Atmosfera kadru</span>
+        <span class="why-tag">✨ Emocje w zdjęciu</span>
+        <span class="why-tag">💼 Profesjonalne rezultaty</span>
+        <span class="why-tag">🎯 Precyzyjna kontrola</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTHOR -->
+  <section class="author-section animate-in" id="sticky-trigger">
+    <div class="section-overline">o autorze kursu</div>
+    <h2 class="section-title">IWAN<br><em>KUCHARCZUK</em></h2>
+
+    <div class="author-card">
+      <div class="author-photo-wrap">
+        <img src="author.jpg" alt="Iwan Kucharczuk" />
+      </div>
+      <div class="author-info">
+        <div class="author-name">Iwan Kucharczuk</div>
+        <div class="author-role">Fotograf studyjny · Twórca kursu</div>
+
+        <div class="author-bio" style="margin-bottom:20px;">
+          <p>Fotografuję od 6 lat i w tym czasie zdążyłem realizować zarówno sesje rodzinne i ślubne, jak i sesje dla różnych firm oraz marek odzieżowych.</p>
+        </div>
+
+        <div class="author-stats-list">
+          <div class="author-stat-item">
+            <span class="ast-num">600+</span>
+            <span class="ast-label">sesji w studiu. Dzięki правильnej pracy ze światłem stale podnoszę swoją średnią cenę za sesję.</span>
+          </div>
+          <div class="author-stat-item">
+            <span class="ast-num">7800</span>
+            <span class="ast-label">fotografów ukończyło moje programy szkoleniowe z zakresu światła, retuszu, obróbki i pozowania.</span>
+          </div>
+          <div class="author-stat-item">
+            <span class="ast-num">4800</span>
+            <span class="ast-label">uczestników kursu fotografii studyjnej. Dokładnie wiem, jak tłumaczyć, aby każdy opanował pracę ze światłem.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- WHAT YOU GET -->
+  <section class="what-you-get animate-in">
+    <div class="section-overline">zawartość kursu</div>
+    <h2 class="section-title" style="color:var(--cream);">OTO CO OTRZYMASZ<br><em style="color:var(--amber);">PODCZAS MOJEGO KURSU:</em></h2>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feat-emoji">🎬</span>
+        <span class="feat-num">9</span>
+        <span class="feat-label">lekcji pełnych treści bez zbędnego gadania</span>
+      </div>
+      <div class="feature-card">
+        <span class="feat-emoji">💡</span>
+        <span class="feat-num">30</span>
+        <span class="feat-label">schematów oświetlenia do zastosowania</span>
+      </div>
+      <div class="feature-card">
+        <span class="feat-emoji">📄</span>
+        <span class="feat-num">3</span>
+        <span class="feat-label">pliki PDF z materiałami pomocniczymi</span>
+      </div>
+      <div class="feature-card">
+        <span class="feat-emoji">💬</span>
+        <span class="feat-num">∞</span>
+        <span class="feat-label">wsparcie na czacie od autora kursu</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" style="background:rgba(255,255,255,0.06);"></div>
+
+  <!-- LESSONS -->
+  <section class="lessons-section animate-in">
+    <div class="section-overline">program kursu</div>
+    <h2 class="section-title">9 LEKCJI<br><em>PEŁNYCH WIEDZY</em></h2>
+    <p class="section-desc" style="margin-top:10px;">Kliknij na lekcję, aby zobaczyć treść i rezultaty</p>
+
+    <div class="lessons-list">
+
+      <div class="lesson-item">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-num">01</div>
+          <div class="lesson-title-text">Źródła światła studyjnego. Jakie wybrać?</div>
+          <button class="lesson-toggle" tabindex="-1">▼</button>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-content-label">Treść lekcji</div>
+          <ul class="lesson-topics">
+            <li>Przegląd głównych typów studyjnych źródeł światła: światło ciągłe i błyskowe</li>
+            <li>Szczegółowe omówienie sprzętu: lampy błyskowe, softboxy, reflektory, lampy LED itp.</li>
+            <li>Instrukcje dotyczące bezpiecznego podłączania i konfiguracji sprzętu</li>
+            <li>Praktyczne wskazówki dotyczące wyboru odpowiedniego sprzętu</li>
+          </ul>
+          <div class="lesson-result">
+            <div class="lesson-result-label">Nauczysz się</div>
+            Rozróżniać różne typy oświetlenia studyjnego, prawidłowo podłączać i konfigurować sprzęt, dobierać odpowiednie źródła światła do konkretnych zadań fotograficznych.
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-num">02</div>
+          <div class="lesson-title-text">Nasadki kształtujące światło</div>
+          <button class="lesson-toggle" tabindex="-1">▼</button>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-content-label">Treść lekcji</div>
+          <ul class="lesson-topics">
+            <li>Przegląd różnych typów nasadek: softboxy, stripboxy, reflektory, wrota, plastry miodu, parasolki itp.</li>
+            <li>Wpływ każdej nasadki na charakter światła: twardość, miękkość, kierunek i rozkład</li>
+            <li>Praktyczne demonstracje wykorzystania nasadek w różnych warunkach sesji</li>
+          </ul>
+          <div class="lesson-result">
+            <div class="lesson-result-label">Nauczysz się</div>
+            Wybierać i stosować nasadki kształtujące światło, aby osiągnąć pożądany efekt świetlny na swoich zdjęciach.
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-num">03</div>
+          <div class="lesson-title-text">Podstawowe rodzaje światła</div>
+          <button class="lesson-toggle" tabindex="-1">▼</button>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-content-label">Treść lekcji</div>
+          <ul class="lesson-topics">
+            <li>Definicja i rola każdego rodzaju światła w fotografii studyjnej</li>
+            <li>Światło główne, modelujące, kontrowe, tła, boczne i akcentujące</li>
+            <li>Praktyczne przykłady ustawienia źródeł światła dla każdego typu</li>
+            <li>Analiza wpływu każdego rodzaju światła na objętość, teksturę i nastrój obrazu</li>
+          </ul>
+          <div class="lesson-result">
+            <div class="lesson-result-label">Nauczysz się</div>
+            Stosować różnych rodzajów światła, aby tworzyć pożądany efekt i atmosferę na swoich fotografiach.
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-num">04</div>
+          <div class="lesson-title-text">Praca ze światłem ciągłym</div>
+          <button class="lesson-toggle" tabindex="-1">▼</button>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-content-label">Treść lekcji</div>
+          <ul class="lesson-topics">
+            <li>Specyfika pracy ze światłem ciągłym w studiu</li>
+            <li>Zalety i wady światła ciągłego w porównaniu ze światłem błyskowym</li>
+            <li>Wykorzystanie nasadek projekcyjnych do tworzenia specyficznych efektów</li>
+            <li>Omówienie 10 różnych schematów oświetlenia z użyciem światła ciągłego</li>
+          </ul>
+          <div class="lesson-result">
+            <div class="lesson-result-label">Nauczysz się</div>
+            Skutecznie korzystać ze światła ciągłego i nasadek projekcyjnych, aby tworzyć różnorodne schematy oświetleniowe.
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-num">05</div>
+          <div class="lesson-title-text">Specyfika pracy ze światłem kolorowym</div>
+          <button class="lesson-toggle" tabindex="-1">▼</button>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-content-label">Treść lekcji</div>
+          <ul class="lesson-topics">
+            <li>Metody tworzenia kolorowego oświetlenia: filtry żelowe, kolorowe lampy LED itp.</li>
+            <li>Najczęstsze błędy przy pracy ze światłem kolorowym i sposoby ich unikania</li>
+            <li>Ćwiczenia praktyczne z tworzenia kolorowych schematów oświetleniowych</li>
+          </ul>
+          <div class="lesson-result">
+            <div class="lesson-result-label">Nauczysz się</div>
+            Tworzyć efektowne kolorowe oświetlenie, unikać typowych błędów i wykorzystywać kolor do podkreślenia wyrazistości fotografii.
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-num">06</div>
+          <div class="lesson-title-text">Praca z flagami</div>
+          <button class="lesson-toggle" tabindex="-1">▼</button>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-content-label">Treść lekcji</div>
+          <ul class="lesson-topics">
+            <li>Blokowanie niepożądanego światła za pomocą flag</li>
+            <li>Tworzenie cieni i zwiększanie kontrastu</li>
+            <li>Kształtowanie kierunku i jakości światła</li>
+            <li>Ćwiczenia praktyczne z wykorzystania flag w różnych schematach oświetleniowych</li>
+          </ul>
+          <div class="lesson-result">
+            <div class="lesson-result-label">Nauczysz się</div>
+            Skutecznie korzystać z flag studyjnych do precyzyjnej kontroli światła, tworzenia pożądanych cieni i akcentów.
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-num">07</div>
+          <div class="lesson-title-text">Zalety pracy ze światłem błyskowym</div>
+          <button class="lesson-toggle" tabindex="-1">▼</button>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-content-label">Treść lekcji</div>
+          <ul class="lesson-topics">
+            <li>Zalety światła błyskowego w fotografii studyjnej</li>
+            <li>Wykorzystanie różnych nasadek ze źródłami światła błyskowego</li>
+            <li>Synchronizacja aparatu z lampami błyskowymi</li>
+            <li>Omówienie 10 różnych schematów oświetlenia z użyciem światła błyskowego</li>
+          </ul>
+          <div class="lesson-result">
+            <div class="lesson-result-label">Nauczysz się</div>
+            Pracować ze światłem błyskowym, wykorzystywać różne nasadki i tworzyć złożone schematy oświetleniowe.
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-num">08</div>
+          <div class="lesson-title-text">Sesja na cykloramie</div>
+          <button class="lesson-toggle" tabindex="-1">▼</button>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-content-label">Treść lekcji</div>
+          <ul class="lesson-topics">
+            <li>Techniki fotografowania na cykloramie z użyciem światła ciągłego i błyskowego</li>
+            <li>Najczęstsze błędy podczas pracy na cykloramie i sposoby ich unikania</li>
+            <li>Ćwiczenia praktyczne z fotografowania na cykloramie</li>
+          </ul>
+          <div class="lesson-result">
+            <div class="lesson-result-label">Nauczysz się</div>
+            Skutecznie pracować na cykloramie, co pozwoli uzyskiwać wysoką jakość i przewidywalne rezultaty.
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-num">09</div>
+          <div class="lesson-title-text">Schematy oświetlenia do portretu, sesji rodzinnej, katalogowej i beauty</div>
+          <button class="lesson-toggle" tabindex="-1">▼</button>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-content-label">Treść lekcji</div>
+          <ul class="lesson-topics">
+            <li>Przegląd klasycznych schematów oświetlenia dla każdego typu sesji</li>
+            <li>Dobór odpowiednich nasadek kształtujących światło i ich ustawienie</li>
+            <li>Analiza wpływu różnych schematów na nastrój i charakter zdjęcia</li>
+            <li>Ćwiczenia praktyczne dla sesji portretowych, rodzinnych, katalogowych i beauty</li>
+          </ul>
+          <div class="lesson-result">
+            <div class="lesson-result-label">Nauczysz się</div>
+            Pewnie stosować różne schematy oświetleniowe dla sesji portretowych, rodzinnych, katalogowych i beauty.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCHEMES PROMO -->
+  <section class="schemes-section animate-in">
+    <div class="schemes-header">
+      <div class="section-overline">bonus do kursu</div>
+      <h2 class="schemes-title">
+        <span class="schemes-title-light">OPRÓCZ LEKCJI OTRZYMASZ</span>
+        <span class="schemes-title-bold">30 SCHEMATÓW<br>ŚWIATŁA<br>W FORMACIE PDF</span>
+      </h2>
+    </div>
+    <div class="schemes-image">
+      <img src="SCHEMAT.png" alt="Przykład schematu oświetlenia PDF" />
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section animate-in">
+    <div class="gallery-heading">
+      <h2 class="gallery-title">TYLKO KIEDY<br>ZROZUMIESZ,<br>JAK DZIAŁA<br><em>ŚWIATŁO</em> —<br>BĘDZIESZ MÓGŁ<br>ROBIĆ TAKIE<br>ZDJĘCIA</h2>
+    </div>
+    <div class="gallery-grid">
+      <img src="5.jpg"  alt="" />
+      <img src="12.jpg" alt="" />
+      <img src="3.jpg"  alt="" />
+      <img src="8.jpg"  alt="" />
+      <img src="1.jpg"  alt="" />
+      <img src="10.jpg" alt="" />
+      <img src="7.jpg"  alt="" />
+      <img src="14.jpg" alt="" />
+      <img src="4.jpg"  alt="" />
+      <img src="11.jpg" alt="" />
+      <img src="2.jpg"  alt="" />
+      <img src="9.jpg"  alt="" />
+      <img src="6.jpg"  alt="" />
+      <img src="13.jpg" alt="" />
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="results-section animate-in">
+    <div class="results-header">
+      <div class="section-overline">rezultaty kursu</div>
+      <h2 class="results-title">W<br><em>REZULTACIE:</em></h2>
+    </div>
+
+    <div class="results-list">
+
+      <div class="result-item">
+        <div class="result-num">01</div>
+        <div class="result-body">
+          <div class="result-text">Zniknie strach przed fotografią studyjną i przestaniesz ustawiać światło „na chybił trafił" — zamiast chaosu pojawi się <strong>pełne zrozumienie schematów.</strong></div>
+        </div>
+      </div>
+
+      <div class="result-item">
+        <div class="result-num">02</div>
+        <div class="result-body">
+          <div class="result-text">Będziesz mógł pracować z <strong>dowolnym sprzętem studyjnym</strong> — nawet w nieznanym studiu będziesz mieć wszystko pod kontrolą.</div>
+        </div>
+      </div>
+
+      <div class="result-item">
+        <div class="result-num">03</div>
+        <div class="result-body">
+          <div class="result-text">Zapomnisz o „płaskich" i prześwietlonych zdjęciach — dzięki czemu będziesz <strong>wyglądać drożej w oczach klientów.</strong></div>
+        </div>
+      </div>
+
+      <div class="result-item result-item--accent">
+        <div class="result-num">04</div>
+        <div class="result-body">
+          <div class="result-tag">30 SCHEMATÓW PDF</div>
+          <div class="result-text">Otrzymasz 30 uniwersalnych, gotowych schematów do każdego typu zleceń: beauty, fashion, portret. Bez wahania będziesz mógł brać takie zlecenia. <strong>Więcej zleceń — więcej pieniędzy.</strong></div>
+        </div>
+      </div>
+
+      <div class="result-item">
+        <div class="result-num">05</div>
+        <div class="result-body">
+          <div class="result-text">Twoje zdjęcia będą wyglądać „<strong>premium</strong>" — zrozumiesz zasady światła stosowanego przez topowych fotografów.</div>
+        </div>
+      </div>
+
+      <div class="result-item">
+        <div class="result-num">06</div>
+        <div class="result-body">
+          <div class="result-text">Nauczysz się odtwarzać dowolne światło z referencji i <strong>tworzyć własny styl</strong> — więcej klientów zacznie zwracać na Ciebie uwagę.</div>
+        </div>
+      </div>
+
+      <div class="result-item">
+        <div class="result-num">07</div>
+        <div class="result-body">
+          <div class="result-text">Twoje portfolio stanie się znacznie silniejsze — a wraz z nim <strong>wzrośnie średnia cena za sesję i całkowity dochód.</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="guarantee-section animate-in">
+    <div class="guarantee-overline">gwarancja</div>
+    <div class="guarantee-card">
+      <span class="guarantee-icon">
+        <svg width="120" height="140" viewBox="0 0 72 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gOuter" x1="36" y1="2" x2="36" y2="82" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#E8C060"/>
+              <stop offset="45%"  stop-color="#C49030"/>
+              <stop offset="100%" stop-color="#7A5010"/>
+            </linearGradient>
+            <linearGradient id="gInner" x1="36" y1="10" x2="36" y2="76" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#1E1B16"/>
+              <stop offset="100%" stop-color="#0E0C0A"/>
+            </linearGradient>
+            <linearGradient id="gDollar" x1="36" y1="28" x2="36" y2="62" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#F0D070"/>
+              <stop offset="100%" stop-color="#C49030"/>
+            </linearGradient>
+            <linearGradient id="gShine" x1="14" y1="38" x2="58" y2="38" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#C49030" stop-opacity="0"/>
+              <stop offset="50%"  stop-color="#E8C060" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#C49030" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="fGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- outer shield — gold border -->
+          <path d="M36 2L4 12V44C4 62 18 75 36 82C54 75 68 62 68 44V12Z"
+                fill="url(#gOuter)"/>
+
+          <!-- inner shield — dark fill -->
+          <path d="M36 9L11 18V44C11 59 22 71 36 78C50 71 61 59 61 44V18Z"
+                fill="url(#gInner)"/>
+
+          <!-- decorative top band -->
+          <path d="M11 28H61" stroke="url(#gShine)" stroke-width="1"/>
+
+          <!-- decorative corner dots -->
+          <circle cx="14" cy="18" r="1.5" fill="#C49030" opacity="0.6"/>
+          <circle cx="58" cy="18" r="1.5" fill="#C49030" opacity="0.6"/>
+
+          <!-- inner border line -->
+          <path d="M36 9L11 18V44C11 59 22 71 36 78C50 71 61 59 61 44V18Z"
+                stroke="#C49030" stroke-width="0.6" fill="none" opacity="0.4"/>
+
+          <!-- dollar sign -->
+          <text x="36" y="57"
+            text-anchor="middle"
+            font-family="Georgia, serif"
+            font-size="30"
+            font-weight="700"
+            fill="url(#gDollar)"
+            filter="url(#fGlow)">$</text>
+
+          <!-- dollar vertical bar top -->
+          <rect x="34.5" y="27" width="3" height="5" rx="1" fill="url(#gDollar)" opacity="0.8"/>
+          <!-- dollar vertical bar bottom -->
+          <rect x="34.5" y="56" width="3" height="5" rx="1" fill="url(#gDollar)" opacity="0.8"/>
+        </svg>
+      </span>
+      <div class="guarantee-days">14</div>
+      <div class="guarantee-label">dni gwarancji zwrotu pieniędzy</div>
+      <p class="guarantee-text">
+        Daję Ci 14-dniową gwarancję zwrotu pieniędzy, jeśli moje lekcje nie spełnią Twoich oczekiwań.
+        <br><br>
+        Jestem pewien tego produktu i wiem, że będziesz pod wrażeniem wiedzy i umiejętności, które zdobędziesz — ponieważ przekazuję Ci techniki i narzędzia, których sam używam każdego dnia w pracy z klientami.
+      </p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PRICING -->
+  <section class="pricing-section animate-in" id="pricing">
+    <div class="pkg-header">
+      <div class="section-overline">pełny pakiet</div>
+      <h2 class="section-title">PEŁNA LISTA TEGO,<br>CO OTRZYMASZ</h2>
+    </div>
+
+    <div class="pkg-grid">
+
+      <div class="pkg-row pkg-row--full">
+        <div class="pkg-group-head">kurs online</div>
+      </div>
+      <div class="pkg-row">
+        <div class="pkg-row-mark">✓</div>
+        <div class="pkg-row-body">
+          <div class="pkg-row-label">Pełny program kursu</div>
+          <div class="pkg-row-value">9 lekcji</div>
+        </div>
+      </div>
+      <div class="pkg-row">
+        <div class="pkg-row-mark">✓</div>
+        <div class="pkg-row-body">
+          <div class="pkg-row-label">Plik PDF</div>
+          <div class="pkg-row-value">"10 schematów ze światłem ciągłym"</div>
+        </div>
+      </div>
+      <div class="pkg-row">
+        <div class="pkg-row-mark">✓</div>
+        <div class="pkg-row-body">
+          <div class="pkg-row-label">Plik PDF</div>
+          <div class="pkg-row-value">"10 schematów ze światłem błyskowym"</div>
+        </div>
+      </div>
+      <div class="pkg-row">
+        <div class="pkg-row-mark">✓</div>
+        <div class="pkg-row-body">
+          <div class="pkg-row-label">Plik PDF</div>
+          <div class="pkg-row-value">"10 schematów ze światłem mieszanym"</div>
+        </div>
+      </div>
+
+      <div class="pkg-row pkg-row--full">
+        <div class="pkg-group-head">bonusy</div>
+      </div>
+      <div class="pkg-row">
+        <div class="pkg-row-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="10" width="20" height="12" rx="1" stroke="var(--amber)" stroke-width="1.6" fill="var(--amber)" fill-opacity="0.1"/>
+            <rect x="1" y="7" width="22" height="4" rx="1" stroke="var(--amber)" stroke-width="1.6" fill="none"/>
+            <line x1="12" y1="7" x2="12" y2="22" stroke="var(--amber)" stroke-width="1.6"/>
+            <path d="M12 7 C11.5 5 9 1.5 11.5 1 C14 0.5 12.5 5.5 12 7Z" fill="var(--amber)"/>
+            <path d="M12 7 C12.5 5 15 1.5 12.5 1 C10 0.5 11.5 5.5 12 7Z" fill="var(--amber)"/>
+          </svg>
+        </div>
+        <div class="pkg-row-body">
+          <div class="pkg-row-label">Bonusowa lekcja techniczna</div>
+          <div class="pkg-row-value">"Jak podłączać sprzęt oświetleniowy w studiu"</div>
+        </div>
+      </div>
+      <div class="pkg-row">
+        <div class="pkg-row-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="10" width="20" height="12" rx="1" stroke="var(--amber)" stroke-width="1.6" fill="var(--amber)" fill-opacity="0.1"/>
+            <rect x="1" y="7" width="22" height="4" rx="1" stroke="var(--amber)" stroke-width="1.6" fill="none"/>
+            <line x1="12" y1="7" x2="12" y2="22" stroke="var(--amber)" stroke-width="1.6"/>
+            <path d="M12 7 C11.5 5 9 1.5 11.5 1 C14 0.5 12.5 5.5 12 7Z" fill="var(--amber)"/>
+            <path d="M12 7 C12.5 5 15 1.5 12.5 1 C10 0.5 11.5 5.5 12 7Z" fill="var(--amber)"/>
+          </svg>
+        </div>
+        <div class="pkg-row-body">
+          <div class="pkg-row-label">Bonusowa lekcja</div>
+          <div class="pkg-row-value">"Ustawienia aparatu do każdego schematu oświetlenia"</div>
+        </div>
+      </div>
+
+      <div class="pkg-row pkg-row--full">
+        <div class="pkg-group-head">wsparcie</div>
+      </div>
+      <div class="pkg-row">
+        <div class="pkg-row-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 5C3 3.9 3.9 3 5 3H19C20.1 3 21 3.9 21 5V15C21 16.1 20.1 17 19 17H8.5L4 21V17H5C3.9 17 3 16.1 3 15Z" stroke="var(--amber)" stroke-width="1.6" fill="var(--amber)" fill-opacity="0.1"/>
+            <circle cx="8.5" cy="10" r="1.2" fill="var(--amber)"/>
+            <circle cx="12" cy="10" r="1.2" fill="var(--amber)"/>
+            <circle cx="15.5" cy="10" r="1.2" fill="var(--amber)"/>
+          </svg>
+        </div>
+        <div class="pkg-row-body">
+          <div class="pkg-row-value">Czat wsparcia z autorem kursu</div>
+          <div class="pkg-row-sub">Pomogę Ci zrobić wszystko poprawnie</div>
+        </div>
+      </div>
+      <div class="pkg-row">
+        <div class="pkg-row-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L20 5.5V12C20 17 16.5 21 12 22.5C7.5 21 4 17 4 12V5.5Z" stroke="var(--amber)" stroke-width="1.6" fill="var(--amber)" fill-opacity="0.1"/>
+            <text x="12" y="16" text-anchor="middle" font-family="Georgia,serif" font-size="8.5" font-weight="700" fill="var(--amber)">$</text>
+          </svg>
+        </div>
+        <div class="pkg-row-body">
+          <div class="pkg-row-value">Gwarancja zwrotu pieniędzy 14 dni</div>
+        </div>
+      </div>
+
+    </div><!-- /.pkg-grid -->
+
+    <div class="pkg-price-block">
+      <div class="pkg-price-area">
+        <span class="pkg-price-new">79 <em>zł</em></span>
+        <span class="pkg-price-old">310 zł</span>
+      </div>
+      <div class="pkg-discount-line">
+        <span>ⓘ</span>
+        <span><strong>ZNIŻKA 75%</strong> i wygaśnie za</span>
+      </div>
+      <div class="pkg-timer-grid">
+        <div class="pkg-timer-cell">
+          <div class="pkg-timer-n" id="p-hours">00</div>
+          <div class="pkg-timer-l">Godzin</div>
+        </div>
+        <div class="pkg-timer-cell">
+          <div class="pkg-timer-n" id="p-minutes">00</div>
+          <div class="pkg-timer-l">Minut</div>
+        </div>
+        <div class="pkg-timer-cell">
+          <div class="pkg-timer-n" id="p-seconds">00</div>
+          <div class="pkg-timer-l">Sekund</div>
+        </div>
+      </div>
+      <a href="#" class="pkg-cta-btn">UZYSKAJ DOSTĘP<br>-75%</a>
+    </div>
+
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FAQ -->
+  <section class="faq-section animate-in">
+    <div class="section-overline">często zadawane pytania</div>
+    <h2 class="section-title">FAQ</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <div class="faq-question-text">Czy kurs nadaje się dla początkujących?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          Tak, kurs został przygotowany w taki sposób, że nawet początkujący łatwo zrozumieją wszystkie narzędzia i techniki. Zaczynamy od podstaw i stopniowo przechodzimy do bardziej zaawansowanych informacji.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <div class="faq-question-text">Ile czasu potrzeba na ukończenie kursu?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          Kurs składa się z 9 lekcji. Możesz uczyć się we własnym tempie, ponieważ wszystkie lekcje są dostępne w nagraniu, a dostęp do nich pozostaje na zawsze.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <div class="faq-question-text">Co jeśli kurs nie będzie mi odpowiadał?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          Oferuję 14-dniową gwarancję zwrotu pieniędzy. Jeśli kurs nie spełni Twoich oczekiwań, możesz odzyskać swoje pieniądze bez zbędnych pytań.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta animate-in">
+    <div class="section-overline">dołącz teraz</div>
+    <h2 class="section-title">DOŁĄCZ W</h2>
+    <p class="section-desc" style="margin-bottom:32px;">i wygaśnie za — cena wzrośnie do 310 zł</p>
+
+    <div class="price-row" style="margin-bottom:24px;">
+      <span class="price-old">310 zł</span>
+      <span class="price-new">79 <span class="price-unit">zł</span></span>
+    </div>
+
+    <a href="#" class="cta-button" style="max-width:360px;margin:0 auto;">UZYSKAJ DOSTĘP <span class="btn-badge">-75%</span></a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">ŚWIATŁO STUDYJNE</div>
+
+    <div class="footer-copy">
+      Wszelkie prawa zastrzeżone. Jakiekolwiek kopiowanie materiałów jest dozwolone wyłącznie za zgodą właścicieli praw autorskich.
+    </div>
+
+    <div class="footer-entity">
+      <div class="footer-entity-name">Roman Prokopov</div>
+      <div class="footer-entity-type">Jednoosobowa działalność gospodarcza</div>
+    </div>
+
+    <div class="footer-regs">
+      NIP: 8952300819<br>
+      REGON: 544143712
+    </div>
+
+    <div class="footer-address">
+      Adres do doręczeń:<br>
+      ul. Adama Jerzego Czartoryskiego 61/37<br>
+      51-126 Wrocław<br>
+      Polska
+    </div>
+
+    <div class="footer-nav">
+      <a href="polityka-prywatnosci.html">Polityka Prywatności</a>
+      <a href="regulamin.html">Regulamin Świadczenia Usług / Oferta Publiczna</a>
+      <a href="polityka-zwrotow.html">Polityka Zwrotów</a>
+    </div>
+
+    <div class="footer-payments">
+      <!-- Apple Pay -->
+      <svg width="52" height="24" viewBox="0 0 52 24" fill="none">
+        <path d="M9.5 5.2c.8-.9 1.3-2.2 1.1-3.4-1.1.1-2.4.7-3.1 1.7C6.8 4.4 6.2 5.7 6.4 6.9c1.2.1 2.4-.6 3.1-1.7z" fill="rgba(247,244,239,0.7)"/>
+        <path d="M10.6 7c-1.7-.1-3.2.9-4 .9-.9 0-2.2-.9-3.6-.8C1.3 7.2.1 8.1-.6 9.5c-1.5 2.6-.4 6.5 1.1 8.6.7 1 1.6 2.1 2.8 2.1 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.8.7 1.2 0 2-.9 2.7-1.9.9-1.2 1.2-2.4 1.2-2.4-.1 0-2.3-.9-2.3-3.4 0-2.1 1.7-3.2 1.8-3.2-1-1.5-2.6-1.7-3-1.3H10.6z" fill="rgba(247,244,239,0.7)"/>
+        <text x="16" y="17" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="rgba(247,244,239,0.7)">Pay</text>
+      </svg>
+
+      <!-- Google Pay -->
+      <svg width="58" height="24" viewBox="0 0 58 24" fill="none">
+        <text x="0" y="17" font-family="Inter,sans-serif" font-size="15" font-weight="700" fill="#4285F4">G</text>
+        <text x="13" y="17" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="rgba(247,244,239,0.7)">Pay</text>
+      </svg>
+
+      <!-- Visa -->
+      <svg width="44" height="24" viewBox="0 0 44 24" fill="none">
+        <text x="0" y="18" font-family="Georgia,serif" font-size="17" font-weight="700" font-style="italic" fill="#ffffff" opacity="0.75">VISA</text>
+      </svg>
+
+      <!-- Mastercard -->
+      <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
+        <circle cx="14" cy="12" r="10" fill="#EB001B"/>
+        <circle cx="26" cy="12" r="10" fill="#F79E1B"/>
+        <path d="M20 4.8a10 10 0 0 1 0 14.4A10 10 0 0 1 20 4.8z" fill="#FF5F00"/>
+      </svg>
+    </div>
+  </footer>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a href="#pricing" class="sticky-cta-btn">DOŁĄCZ W SPECJALNEJ CENIE -75%</a>
+  </div>
+
+</div>
+
+<script>
+  // TOMORROW'S DATE in Polish
+  (function() {
+    var months = ['stycznia','lutego','marca','kwietnia','maja','czerwca',
+                  'lipca','sierpnia','września','października','listopada','grudnia'];
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    var el = document.getElementById('badge-date');
+    if (el) el.textContent = tomorrow.getDate() + ' ' + months[tomorrow.getMonth()];
+  })();
+
+  // COUNTDOWN — 10 minutes, persists across reloads
+  (function() {
+    var KEY = 'swiatlo_timer_end';
+    var stored = localStorage.getItem(KEY);
+    var end;
+    if (stored) {
+      end = parseInt(stored, 10);
+    } else {
+      end = Date.now() + 10 * 60 * 1000;
+      localStorage.setItem(KEY, end);
+    }
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var diff = end - Date.now();
+      var mins = diff <= 0 ? '00' : pad(Math.floor(diff / 60000));
+      var secs = diff <= 0 ? '00' : pad(Math.floor((diff % 60000) / 1000));
+      document.getElementById('t-hours').textContent   = '00';
+      document.getElementById('t-minutes').textContent = mins;
+      document.getElementById('t-seconds').textContent = secs;
+      document.getElementById('p-hours').textContent   = '00';
+      document.getElementById('p-minutes').textContent = mins;
+      document.getElementById('p-seconds').textContent = secs;
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // STICKY CTA — show after 3rd block
+  (function() {
+    var btn = document.getElementById('sticky-cta');
+    var trigger = document.getElementById('sticky-trigger');
+    if (!btn || !trigger) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          btn.classList.add('visible');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(trigger);
+  })();
+
+  // LESSONS ACCORDION
+  function toggleLesson(header) {
+    var item = header.closest('.lesson-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.lesson-item.open').forEach(function(el){ el.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // FAQ ACCORDION
+  function toggleFaq(questionEl) {
+    var item = questionEl.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(el){ el.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // SCROLL ANIMATIONS
+  (function() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.animate-in').forEach(function(el, i) {
+      el.style.transitionDelay = (i % 4) * 0.06 + 's';
+      observer.observe(el);
+    });
+  })();
+</script>
+</body>
+</html>

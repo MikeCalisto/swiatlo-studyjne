@@ -2819,7 +2819,12 @@
           <label>Twój numer telefonu *</label>
           <input type="tel" placeholder="Twój numer telefonu" />
         </div>
-        <button class="modal-submit">UZYSKAJ DOSTĘP</button>
+        <button class="modal-submit" onclick="handleModalSubmit(event)">UZYSKAJ DOSTĘP</button>
+        <label class="modal-consent" id="modal-consent-label">
+          <input type="checkbox" id="modal-consent-check" onchange="document.getElementById('modal-consent-label').classList.remove('modal-consent--error')">
+          <span class="modal-consent-box"></span>
+          <span class="modal-consent-text">Akceptuję <a href="regulamin.html" target="_blank">Regulamin</a> oraz <a href="polityka-prywatnosci.html" target="_blank">Politykę Prywatności</a></span>
+        </label>
         <p class="modal-guarantee"><strong>Nie ryzykujesz niczym!</strong> W ciągu 14 dni, bez podania przyczyny, możesz otrzymać zwrot pieniędzy, jeśli kurs nie spełni Twoich oczekiwań</p>
       </div>
     </div>

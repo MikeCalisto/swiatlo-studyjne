@@ -1939,6 +1939,54 @@
       line-height: 1.65;
     }
     .modal-guarantee strong { color: var(--black); }
+    .modal-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      margin: 14px 0 18px;
+    }
+    .modal-consent input[type="checkbox"] { display: none; }
+    .modal-consent-box {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      background: #fff;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .modal-consent input:checked + .modal-consent-box {
+      background: var(--amber);
+      border-color: var(--amber);
+    }
+    .modal-consent input:checked + .modal-consent-box::after {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 9px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) translateY(-1px);
+    }
+    .modal-consent-text {
+      font-size: 11px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+    .modal-consent-text a {
+      color: var(--amber);
+      text-decoration: underline;
+    }
+    .modal-consent--error .modal-consent-box {
+      border-color: #c0392b;
+      background: #fff0ee;
+    }
 
     /* ============================
        STICKY CTA BUTTON

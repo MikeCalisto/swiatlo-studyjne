@@ -2926,6 +2926,15 @@
   })();
 
   // MODAL
+  function handleModalSubmit(e) {
+    e.preventDefault();
+    var check = document.getElementById('modal-consent-check');
+    if (!check.checked) {
+      document.getElementById('modal-consent-label').classList.add('modal-consent--error');
+      return;
+    }
+    // submit logic here
+  }
   function openModal() {
     document.getElementById('modal-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';

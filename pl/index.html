@@ -2949,7 +2949,35 @@
       document.getElementById('modal-consent-label').classList.add('modal-consent--error');
       return;
     }
-    // submit logic here
+    var email = document.querySelector('.modal-field input[type="email"]').value.trim();
+    var phone = document.querySelector('.modal-field input[type="tel"]').value.trim();
+    if (!email || !phone) {
+      alert('Wypełnij e-mail i numer telefonu.');
+      return;
+    }
+    var btn = document.querySelector('.modal-submit');
+    btn.textContent = 'Przetwarzanie...';
+    btn.disabled = true;
+    fetch('/api/payment-payu', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, phone: phone })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      } else {
+        alert(data.error || 'Wystąpił błąd. Spróbuj ponownie.');
+        btn.textContent = 'Zamawiam i płacę';
+        btn.disabled = false;
+      }
+    })
+    .catch(function() {
+      alert('Błąd połączenia. Spróbuj ponownie.');
+      btn.textContent = 'Zamawiam i płacę';
+      btn.disabled = false;
+    });
   }
   function openModal() {
     document.getElementById('modal-overlay').classList.add('open');

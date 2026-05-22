@@ -46,13 +46,13 @@ export default async function handler(req, res) {
       merchantPosId: posId,
       description:   'ŚWIATŁO STUDYJNE — kurs online fotografii portretowej',
       currencyCode:  'PLN',
-      totalAmount:   '7900', // 79.00 zł w groszach
+      totalAmount:   '4900', // 79.00 zł w groszach
       extOrderId,
       buyer: { email, phone, language: 'pl' },
       products: [
         {
           name:      'Kurs online fotografii portretowej ŚWIATŁO STUDYJNE',
-          unitPrice: '7900',
+          unitPrice: '4900',
           quantity:  '1',
         },
       ],
